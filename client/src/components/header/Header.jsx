@@ -33,14 +33,14 @@ const Header = () => {
             className="rounded-full max-w-[800px]"
           />
         </div>
-        <div className="menu-links flex justify-between items-center gap-7 md:static fixed z-50 bottom-0 md:w-auto w-screen md:bg-transparent bg-white left-0 md:border-t-0 border-t md:px-0 px-4">
-          <Link to="/" className="menu-link flex flex-col  hover:text-[#40a9ff] transiton-all">
+        <div className="menu-links flex justify-between items-center gap-7 md:static fixed z-50 bottom-0 md:w-auto w-screen md:bg-transparent bg-white left-0 md:border-t-0 border-t md:px-0 px-4 ">
+          <Link to="/" className="menu-link flex flex-col  hover:text-[#40a9ff] transiton-all ">
             <HomeOutlined className="md:text-2xl text-xl" />
             <span className="md:text-xs text-[10px]">Home</span>
           </Link>
        
           <Link to="/cart" className="menu-link  flex-col hover:text-[#40a9ff] transiton-all md:flex hidden">
-           <Badge count={cart.cartItems.length} offset={[0, 6]}>
+           <Badge count={cart.cartItems.length} offset={[0, 0]}>
            <ShoppingCartOutlined className="text-2xl" 
             />
           </Badge>
@@ -71,7 +71,7 @@ const Header = () => {
           </Link>
           </div>
           <a href="/" className="menu-link flex flex-col hover:text-[#40a9ff] transiton-all md:hidden">
-           <Badge count={5} offset={[0,6]}>
+           <Badge count={5} offset={[0,0]}>
            <ShoppingCartOutlined className="text-2xl " 
             />
           </Badge>

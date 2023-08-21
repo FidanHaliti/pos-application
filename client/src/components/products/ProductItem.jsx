@@ -1,3 +1,5 @@
+
+import { message } from "antd";
 import { addProduct } from "../redux/cartSlice";
 import { useDispatch } from "react-redux";
 
@@ -8,12 +10,15 @@ const ProductItem = ({ item }) => {
 
   const handleClick = () => {
     dispatch(addProduct({...item, quantity: 1}))
+    message.success('item added to cart')
   };
 
   return (
     <div
     className="product-item border hover:shadow-lg cursor-pointer transition-all select-none"
     onClick={handleClick}
+    
+    
   >
       <div className="product-img">
         <img
