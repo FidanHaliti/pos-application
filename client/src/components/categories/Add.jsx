@@ -1,6 +1,12 @@
-import { Button, Form, Input, Modal, message } from "antd";
+import { Button, Form, Input, message, Modal } from "antd";
+import React from "react";
 
-const Add = ({ isModalOpen, setIsModalOpen, categories, setCategories }) => {
+const Add = ({
+  isAddModalOpen,
+  setIsAddModalOpen,
+  categories,
+  setCategories,
+}) => {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
@@ -8,9 +14,9 @@ const Add = ({ isModalOpen, setIsModalOpen, categories, setCategories }) => {
       fetch("http://localhost:5000/api/categories/add-category", {
         method: "POST",
         body: JSON.stringify(values),
-        headers: { "Content-Type": "application/json; charset=UTF-8" },
+        headers: { "Content-type": "application/json; charset=UTF-8" },
       });
-      message.success("The category has been successfully added.");
+      message.success("Kategori başarıyla eklendi.");
       form.resetFields();
       setCategories([
         ...categories,
@@ -26,25 +32,22 @@ const Add = ({ isModalOpen, setIsModalOpen, categories, setCategories }) => {
 
   return (
     <Modal
-      title="New Add Category"
-      open={isModalOpen}
-      onCancel={() => setIsModalOpen(false)}
+      title="Yeni Kategori Ekle"
+      open={isAddModalOpen}
+      onCancel={() => setIsAddModalOpen(false)}
       footer={false}
     >
       <Form layout="vertical" onFinish={onFinish} form={form}>
         <Form.Item
           name="title"
-          label="Add Category :"
-          rules={[
-            { required: true, message: "empty category is not accepted!" },
-          ]}
+          label="Kategori Ekle"
+          rules={[{ required: true, message: "Kategori Alanı Boş Geçilemez!" }]}
         >
           <Input />
         </Form.Item>
         <Form.Item className="flex justify-end mb-0">
           <Button type="primary" htmlType="submit">
-            {" "}
-            Add
+            Oluştur
           </Button>
         </Form.Item>
       </Form>

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import BillPage from "./pages/BillPage";
 import CustomerPage from "./pages/CustomerPage";
@@ -15,6 +15,54 @@ import ProductPage from "./pages/ProductPage";
     return (
       <BrowserRouter >
         <Routes>
+        <Route
+          path="/"
+          element={
+            <RouteControl>
+              <HomePage />
+            </RouteControl>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <RouteControl>
+              <CartPage />
+            </RouteControl>
+          }
+        />
+        <Route
+          path="/bills"
+          element={
+            <RouteControl>
+              <BillPage />
+            </RouteControl>
+          }
+        />
+        <Route
+          path="/customers"
+          element={
+            <RouteControl>
+              <CustomerPage />
+            </RouteControl>
+          }
+        />
+        <Route
+          path="/statistic"
+          element={
+            <RouteControl>
+              <StatisticPage />
+            </RouteControl>
+          }
+        />
+        <Route
+          path="/products"
+          element={
+            <RouteControl>
+              <ProductPage />
+            </RouteControl>
+          }
+        />
           <Route path="/" element= {<HomePage />} /> 
           <Route path="/cart" element= {<CartPage />} /> 
           <Route path="/bills" element= {<BillPage />} /> 
@@ -29,3 +77,11 @@ import ProductPage from "./pages/ProductPage";
   }
 
 export default App
+
+export const RouteControl = ({ children }) => {
+  if (localStorage.getItem("posUser")) {
+    return children;
+  } else {
+    return <Navigate to="/login" />;
+  }
+};
