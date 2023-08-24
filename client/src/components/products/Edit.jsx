@@ -1,5 +1,5 @@
 import { Button, Form, Input, message, Modal, Select, Table } from "antd";
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Edit = () => {
   const [products, setProducts] = useState([]);
@@ -11,7 +11,9 @@ const Edit = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/products/get-all");
+        const res = await fetch(
+          import.meta.env.VITE_REACT_APP_SERVER_URL + "/api/products/get-all"
+        );
         const data = await res.json();
         setProducts(data);
       } catch (error) {
@@ -25,7 +27,9 @@ const Edit = () => {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/categories/get-all");
+        const res = await fetch(
+          import.meta.env.VITE_REACT_APP_SERVER_URL + "/api/categories/get-all"
+        );
         const data = await res.json();
         data &&
           setCategories(
@@ -43,11 +47,15 @@ const Edit = () => {
 
   const onFinish = (values) => {
     try {
-      fetch("http://localhost:5000/api/products/update-product", {
-        method: "PUT",
-        body: JSON.stringify({ ...values, productId: editingItem._id }),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-      });
+      fetch(
+        import.meta.env.VITE_REACT_APP_SERVER_URL +
+          "/api/products/update-product",
+        {
+          method: "PUT",
+          body: JSON.stringify({ ...values, productId: editingItem._id }),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        }
+      );
       message.success("Ürün başarıyla güncellendi.");
       setProducts(
         products.map((item) => {
@@ -66,11 +74,15 @@ const Edit = () => {
   const deleteCategory = (id) => {
     if (window.confirm("Emin misiniz?")) {
       try {
-        fetch("http://localhost:5000/api/products/delete-product", {
-          method: "DELETE",
-          body: JSON.stringify({ productId: id }),
-          headers: { "Content-type": "application/json; charset=UTF-8" },
-        });
+        fetch(
+          import.meta.env.VITE_REACT_APP_SERVER_URL +
+            "/api/products/delete-product",
+          {
+            method: "DELETE",
+            body: JSON.stringify({ productId: id }),
+            headers: { "Content-type": "application/json; charset=UTF-8" },
+          }
+        );
         message.success("Kategori başarıyla silindi.");
         setProducts(products.filter((item) => item._id !== id));
       } catch (error) {

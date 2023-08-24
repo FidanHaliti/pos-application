@@ -12,11 +12,14 @@ const Add = ({
 
   const onFinish = (values) => {
     try {
-      fetch("http://localhost:5000/api/products/add-product", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-      });
+      fetch(
+        import.meta.env.VITE_REACT_APP_SERVER_URL + "/api/products/add-product",
+        {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        }
+      );
       message.success("Kategori başarıyla eklendi.");
       form.resetFields();
       setProducts([
@@ -27,7 +30,7 @@ const Add = ({
           price: Number(values.price),
         },
       ]);
-      setIsAddModalOpen(false)
+      setIsAddModalOpen(false);
     } catch (error) {
       console.log(error);
     }

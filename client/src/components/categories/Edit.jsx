@@ -12,11 +12,15 @@ const Edit = ({
   const onFinish = (values) => {
     console.log(values);
     try {
-      fetch("http://localhost:5000/api/categories/update-category", {
-        method: "PUT",
-        body: JSON.stringify({ ...values, categoryId: editingRow._id }),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-      });
+      fetch(
+        import.meta.env.VITE_REACT_APP_SERVER_URL +
+          "/api/categories/update-category",
+        {
+          method: "PUT",
+          body: JSON.stringify({ ...values, categoryId: editingRow._id }),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        }
+      );
       message.success("The category has been successfully updated.");
       setCategories(
         categories.map((item) => {
@@ -32,22 +36,25 @@ const Edit = ({
     }
   };
   const deleteCategory = (id) => {
-if(window.confirm("are you sure?")){
-    try {
-      fetch("http://localhost:5000/api/categories/delete-category", {
-        method: "DELETE",
-        body: JSON.stringify({ categoryId: id }),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-      });
-      message.success("The category has been successfully deleted.");
-      setCategories(categories.filter((item) => item._id !==id))
-    } catch (error) {
-      message.error("Something went wrong.");
-      console.log(error);
+    if (window.confirm("are you sure?")) {
+      try {
+        fetch(
+          import.meta.env.VITE_REACT_APP_SERVER_URL +
+            "/api/categories/delete-category",
+          {
+            method: "DELETE",
+            body: JSON.stringify({ categoryId: id }),
+            headers: { "Content-type": "application/json; charset=UTF-8" },
+          }
+        );
+        message.success("The category has been successfully deleted.");
+        setCategories(categories.filter((item) => item._id !== id));
+      } catch (error) {
+        message.error("Something went wrong.");
+        console.log(error);
+      }
     }
   };
-  
-}
   const columns = [
     {
       title: "Category Title",
@@ -70,13 +77,21 @@ if(window.confirm("are you sure?")){
       render: (text, record) => {
         return (
           <div>
-            <Button type="link" onClick={() => setEditingRow(record)} className="pl-0">
+            <Button
+              type="link"
+              onClick={() => setEditingRow(record)}
+              className="pl-0"
+            >
               Edit
             </Button>
             <Button type="link" htmlType="submit" className="text-gray-500">
               Save
             </Button>
-            <Button type="link" danger onClick={()=> deleteCategory(record._id)}>
+            <Button
+              type="link"
+              danger
+              onClick={() => deleteCategory(record._id)}
+            >
               Delete
             </Button>
           </div>

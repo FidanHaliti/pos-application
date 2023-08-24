@@ -11,11 +11,15 @@ const Add = ({
 
   const onFinish = (values) => {
     try {
-      fetch("http://localhost:5000/api/categories/add-category", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-      });
+      fetch(
+        import.meta.env.VITE_REACT_APP_SERVER_URL +
+          "/api/categories/add-category",
+        {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        }
+      );
       message.success("Kategori başarıyla eklendi.");
       form.resetFields();
       setCategories([

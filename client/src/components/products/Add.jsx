@@ -11,11 +11,14 @@ const Add = ({
 
   const onFinish = (values) => {
     try {
-      fetch("http://localhost:5000/api/products/add-product", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: { "Content-Type": "application/json; charset=UTF-8" },
-      });
+      fetch(
+        import.meta.env.VITE_REACT_APP_SERVER_URL + "/api/products/add-product",
+        {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: { "Content-Type": "application/json; charset=UTF-8" },
+        }
+      );
       message.success("The product has been successfully added.");
       form.resetFields();
       setProducts([
@@ -27,7 +30,7 @@ const Add = ({
         },
       ]);
 
-      setIsAddModalOpen(false)
+      setIsAddModalOpen(false);
     } catch (error) {
       console.log(error);
     }
@@ -89,7 +92,6 @@ const Add = ({
 
         <Form.Item className="flex justify-end mb-0">
           <Button type="primary" htmlType="submit">
-           
             Add
           </Button>
         </Form.Item>
