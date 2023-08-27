@@ -56,7 +56,7 @@ const Edit = () => {
           headers: { "Content-type": "application/json; charset=UTF-8" },
         }
       );
-      message.success("Ürün başarıyla güncellendi.");
+      message.success("The product has been updated successfully.");
       setProducts(
         products.map((item) => {
           if (item._id === editingItem._id) {
@@ -66,13 +66,13 @@ const Edit = () => {
         })
       );
     } catch (error) {
-      message.error("Bir şeyler yanlış gitti.");
+      message.error("Something went wrong.");
       console.log(error);
     }
   };
 
   const deleteCategory = (id) => {
-    if (window.confirm("Emin misiniz?")) {
+    if (window.confirm("Are you Sure")) {
       try {
         fetch(
           import.meta.env.VITE_REACT_APP_SERVER_URL +
@@ -83,7 +83,7 @@ const Edit = () => {
             headers: { "Content-type": "application/json; charset=UTF-8" },
           }
         );
-        message.success("Kategori başarıyla silindi.");
+        message.success("The category has been successfully deleted.");
         setProducts(products.filter((item) => item._id !== id));
       } catch (error) {
         message.error("Bir şeyler yanlış gitti.");
@@ -94,7 +94,7 @@ const Edit = () => {
 
   const columns = [
     {
-      title: "Ürün Adı",
+      title: "Product name",
       dataIndex: "title",
       width: "8%",
       render: (_, record) => {
@@ -102,7 +102,7 @@ const Edit = () => {
       },
     },
     {
-      title: "Ürün Görseli",
+      title: "Image",
       dataIndex: "img",
       width: "4%",
       render: (_, record) => {
@@ -112,12 +112,12 @@ const Edit = () => {
       },
     },
     {
-      title: "Ürün Fiyatı",
+      title: "Price",
       dataIndex: "price",
       width: "8%",
     },
     {
-      title: "Kategori",
+      title: "Category",
       dataIndex: "category",
       width: "8%",
     },
@@ -136,14 +136,14 @@ const Edit = () => {
                 setEditingItem(record);
               }}
             >
-              Düzenle
+             Edit
             </Button>
             <Button
               type="link"
               danger
               onClick={() => deleteCategory(record._id)}
             >
-              Sil
+              Delete
             </Button>
           </div>
         );
@@ -164,7 +164,7 @@ const Edit = () => {
         }}
       />
       <Modal
-        title="Yeni Ürün Ekle"
+        title="Add new Product"
         open={isEditModalOpen}
         onCancel={() => setIsEditModalOpen(false)}
         footer={false}
@@ -177,36 +177,36 @@ const Edit = () => {
         >
           <Form.Item
             name="title"
-            label="Ürün Adı"
+            label="Title"
             rules={[
-              { required: true, message: "Ürün Adı Alanı Boş Geçilemez!" },
+              { required: true, message: "Product Name Field Cannot Be Empty!" },
             ]}
           >
             <Input placeholder="Ürün adı giriniz." />
           </Form.Item>
           <Form.Item
             name="img"
-            label="Ürün Görseli"
+            label="Image"
             rules={[
-              { required: true, message: "Ürün Görseli Alanı Boş Geçilemez!" },
+              { required: true, message: "Product Image Field Cannot Be Empty!" },
             ]}
           >
             <Input placeholder="Ürün görseli giriniz." />
           </Form.Item>
           <Form.Item
             name="price"
-            label="Ürün Fiyatı"
+            label="Price"
             rules={[
-              { required: true, message: "Ürün Fiyatı Alanı Boş Geçilemez!" },
+              { required: true, message: "Product Price Field Cannot Be Empty!" },
             ]}
           >
             <Input placeholder="Ürün fiyatı giriniz." />
           </Form.Item>
           <Form.Item
             name="category"
-            label="Kategori Seç"
+            label="Select Category"
             rules={[
-              { required: true, message: "Kategori Alanı Boş Geçilemez!" },
+              { required: true, message: "Category Field Cannot Be Empty!" },
             ]}
           >
             <Select

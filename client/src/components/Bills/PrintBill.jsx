@@ -9,7 +9,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
 
   return (
     <Modal
-      title="Fatura Yazdır"
+      title="Print Invoice"
       open={isModalOpen}
       footer={false}
       onCancel={() => setIsModalOpen(false)}
@@ -24,14 +24,14 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
             <div className="bill-details">
               <div className="grid sm:grid-cols-4 grid-cols-3 gap-12">
                 <div className="text-md text-slate-500">
-                  <p className="font-bold text-slate-700">Fatura Detayı:</p>
+                  <p className="font-bold text-slate-700">Invoice Detail:</p>
                   <p className="text-green-600">{customer?.customerName}</p>
                   <p> Fake Street 123</p>
                   <p> San Javier </p>
                   <p> CA 1234</p>
                 </div>
                 <div className="text-md text-slate-500">
-                  <p className="font-bold text-slate-700">Fatura:</p>
+                  <p className="font-bold text-slate-700">Invoice:</p>
                   The Boring Company
                   <p> Tesla Street 007</p>
                   <p> Frisco </p>
@@ -39,23 +39,23 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                 </div>
                 <div className="text-md text-slate-500">
                   <div>
-                    <p className="font-bold text-slate-700">Fatura numarası:</p>
+                    <p className="font-bold text-slate-700">Invoice Number:</p>
                     <p>000{Math.floor(Math.random() * 100)}</p>
                   </div>
                   <div>
                     <p className="font-bold text-slate-700 mt-2">
-                      Veriliş Tarihi:
+                      Date of issue:
                     </p>
                     <p>{customer?.createdAt.substring(0, 10)}</p>
                   </div>
                 </div>
                 <div className="text-md text-slate-500 sm:block hidden">
                   <div>
-                    <p className="font-bold text-slate-700">Şartlar:</p>
+                    <p className="font-bold text-slate-700">Conditions:</p>
                     <p>10 gün</p>
                   </div>
                   <div>
-                    <p className="font-bold text-slate-700 mt-2">Vade:</p>
+                    <p className="font-bold text-slate-700 mt-2">Expiry:</p>
                     <p>2023-11-21</p>
                   </div>
                 </div>
@@ -69,14 +69,14 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                       scope="col"
                       className="py-3.5 text-left text-sm font-normal text-slate-700 md:pl-0 sm:table-cell hidden"
                     >
-                      Görsel
+                      Image
                     </th>
                     <th
                       scope="col"
                       className="py-3.5 text-left text-sm font-normal text-slate-700 md:pl-0 sm:table-cell hidden"
                     >
                       {" "}
-                      Başlık
+                      Image
                     </th>
                     <th
                       colSpan={4}
@@ -84,32 +84,32 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                       className="py-3.5 text-left text-sm font-normal text-slate-700 md:pl-0 sm:hidden"
                     >
                       {" "}
-                      Başlık
+                      Title
                     </th>
                     <th
                       scope="col"
                       className="py-3.5 text-center text-sm font-normal text-slate-700 md:pl-0 sm:table-cell hidden"
                     >
-                      Fiyat
+                      Price
                     </th>
                     <th
                       scope="col"
                       className="py-3.5 text-center text-sm font-normal text-slate-700 md:pl-0 sm:table-cell hidden"
                     >
-                      Adet
+                      Pice
                     </th>
                     <th
                       scope="col"
                       className="py-3.5 text-end text-sm font-normal text-slate-700 md:pl-0"
                     >
-                      Toplam
+                      Total
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {customer?.cartItems.map((item) => (
-                    <tr className="border-b border-slate-200" key={item}>
-                      <td className="py-4 sm:table-cell hidden" >
+                    <tr key={item._id} className="border-b border-slate-200">
+                      <td className="py-4 sm:table-cell hidden">
                         <img
                           src={item.img}
                           alt=""
@@ -120,7 +120,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                         <div className="flex flex-col">
                           <span className="font-medium">{item.title}</span>
                           <span className="sm:hidden inline-block text-xs">
-                            Birim Fiyatı {item.price}₺
+                            Unit price {item.price}€
                           </span>
                         </div>
                       </td>
@@ -128,18 +128,18 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                         <div className="flex flex-col">
                           <span className="font-medium">{item.title}</span>
                           <span className="sm:hidden inline-block text-xs">
-                            Birim Fiyatı {item.price}₺
+                            Unit price {item.price}€
                           </span>
                         </div>
                       </td>
                       <td className="py-4 text-center sm:table-cell hidden">
-                        <span>{item.price.toFixed(2)}₺</span>
+                        <span>{item.price.toFixed(2)}€</span>
                       </td>
                       <td className="py-4 sm:text-center text-right sm:table-cell hidden">
                         <span>{item.quantity}</span>
                       </td>
                       <td className="py-4 text-end">
-                        <span>{(item.price * item.quantity).toFixed(2)}₺</span>
+                        <span>{(item.price * item.quantity).toFixed(2)}€</span>
                       </td>
                     </tr>
                   ))}
@@ -152,7 +152,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                       scope="row"
                     >
                       <span className="font-normal text-slate-700">
-                        Ara Toplam
+                        Subtotal
                       </span>
                     </th>
                     <th
@@ -160,11 +160,11 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                       scope="row"
                       colSpan="4"
                     >
-                      <p className="font-normal text-slate-700">Ara Toplam</p>
+                      <p className="font-normal text-slate-700">Subtotal</p>
                     </th>
                     <th className="text-right pt-4" scope="row">
                       <span className="font-normal text-slate-700">
-                        {customer?.subTotal}₺
+                        {customer?.subTotal}€
                       </span>
                     </th>
                   </tr>
@@ -174,18 +174,18 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                       colSpan="4"
                       scope="row"
                     >
-                      <span className="font-normal text-slate-700">KDV</span>
+                      <span className="font-normal text-slate-700">TVSH</span>
                     </th>
                     <th
                       className="text-left pt-4 sm:hidden"
                       scope="row"
                       colSpan="4"
                     >
-                      <p className="font-normal text-slate-700">KDV</p>
+                      <p className="font-normal text-slate-700">TVSH</p>
                     </th>
                     <th className="text-right pt-4" scope="row">
                       <span className="font-normal text-red-600">
-                        +{customer?.tax}₺
+                        +{customer?.tax}€
                       </span>
                     </th>
                   </tr>
@@ -195,20 +195,18 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                       colSpan="4"
                       scope="row"
                     >
-                      <span className="font-normal text-slate-700">
-                        Genel Toplam
-                      </span>
+                      <span className="font-normal text-slate-700">Total</span>
                     </th>
                     <th
                       className="text-left pt-4 sm:hidden"
                       scope="row"
                       colSpan="4"
                     >
-                      <p className="font-normal text-slate-700">Genel Toplam</p>
+                      <p className="font-normal text-slate-700">Total</p>
                     </th>
                     <th className="text-right pt-4" scope="row">
                       <span className="font-normal text-slate-700">
-                        {customer?.totalAmount}₺
+                        {customer?.totalAmount}€
                       </span>
                     </th>
                   </tr>
@@ -217,15 +215,15 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
               <div className="py-9">
                 <div className="border-t pt-9 border-slate-200">
                   <p className="text-sm font-light text-slate-700">
-                    Ödeme koşulları 14 gündür. Paketlenmemiş Borçların Geç
-                    Ödenmesi Yasası 0000'e göre, serbest çalışanların bu süreden
-                    sonra borçların ödenmemesi durumunda 00.00 gecikme ücreti
-                    talep etme hakkına sahip olduklarını ve bu noktada bu ücrete
-                    ek olarak yeni bir fatura sunulacağını lütfen unutmayın.
-                    Revize faturanın 14 gün içinde ödenmemesi durumunda, vadesi
-                    geçmiş hesaba ek faiz ve %8 yasal oran artı %0,5 Bank of
-                    England tabanı olmak üzere toplam %8,5 uygulanacaktır.
-                    Taraflar Kanun hükümleri dışında sözleşme yapamazlar.
+                  Payment terms are 14 days. Late Unpackaged Debts
+                     According to the Pay Act 0000, freelancers are exempt from this period.
+                     00:00 late fee in case the debts are not paid after
+                     that they have the right to demand and that at this point
+                     Please note that a new invoice will be submitted in addition.
+                     If the revised invoice is not paid within 14 days, the due date
+                     additional interest on the previous account and 8% statutory rate plus 0.5%
+                     A total of 8.5% will be applied, including the England base.
+                     The parties cannot make a contract other than the provisions of the Law.
                   </p>
                 </div>
               </div>
@@ -235,7 +233,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
       </section>
       <div className="flex justify-end mt-4">
         <Button type="primary" size="large" onClick={handlePrint}>
-          Yazdır
+          Print
         </Button>
       </div>
     </Modal>

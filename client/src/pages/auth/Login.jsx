@@ -29,16 +29,16 @@ const Login = () => {
             email: user.email,
           })
         );
-        message.success("Giriş işlemi başarılı.");
+        message.success("Login successful.");
         navigate("/");
       } else if (res.status === 404) {
-        message.error("Kullanıcı bulunamadı!");
+        message.error("User not found!");
       } else if (res.status === 403) {
-        message.error("Şifre yanlış!");
+        message.error("Wrong password!");
       }
       setLoading(false);
     } catch (error) {
-      message.error("Bir şeyler yanlış gitti.");
+      message.error("Something went wrong.");
       console.log(error);
       setLoading(false);
     }
@@ -62,19 +62,19 @@ const Login = () => {
               rules={[
                 {
                   required: true,
-                  message: "E-mail Alanı Boş Bırakılamaz!",
+                  message: "E-mail Field Cannot Be Empty!",
                 },
               ]}
             >
               <Input />
             </Form.Item>
             <Form.Item
-              label="Şifre"
+              label="Password"
               name={"password"}
               rules={[
                 {
                   required: true,
-                  message: "Şifre Alanı Boş Bırakılamaz!",
+                  message: "Password Field Cannot Be Empty!",
                 },
               ]}
             >
@@ -94,14 +94,14 @@ const Login = () => {
                 size="large"
                 loading={loading}
               >
-                Giriş Yap
+                Login
               </Button>
             </Form.Item>
           </Form>
           <div className="flex justify-center absolute left-0 bottom-10 w-full">
-            Henüz bir hesabınız yok mu?&nbsp;
+          Do not you have an account yet?&nbsp;
             <Link to="/register" className="text-blue-600">
-              Şimdi kaydol
+            Register now
             </Link>
           </div>
         </div>
@@ -112,22 +112,22 @@ const Login = () => {
                 <AuthCarousel
                   img="/images/responsive.svg"
                   title="Responsive"
-                  desc="Tüm Cihaz Boyutlarıyla Uyumluluk"
+                  desc="Compatibility with All Device Sizes"
                 />
                 <AuthCarousel
                   img="/images/statistic.svg"
-                  title="İstatistikler"
-                  desc="Geniş Tutulan İstatistikler"
+                  title="Statistics"
+                  desc="Widespread Statistics"
                 />
                 <AuthCarousel
                   img="/images/customer.svg"
-                  title="Müşteri Memnuniyeti"
-                  desc="Deneyim Sonunda Üründen Memnun Müşteriler"
+                  title="Customer Satisfaction"
+                  desc="Satisfied Customers at the End of Experience"
                 />
                 <AuthCarousel
                   img="/images/admin.svg"
-                  title="Yönetici Paneli"
-                  desc="Tek Yerden Yönetim"
+                  title="Admin Panel"
+                  desc="One Place Management"
                 />
               </Carousel>
             </div>

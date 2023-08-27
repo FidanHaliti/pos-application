@@ -71,13 +71,13 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
           name={"paymentMode"}
         >
           <Select placeholder="Payment method">
-            <Select.Option value="Cash">Nakit</Select.Option>
-            <Select.Option value="Credit Cart">Kredi Kartı</Select.Option>
+            <Select.Option value="Cash">Cash</Select.Option>
+            <Select.Option value="Credit Cart">Credit Cart</Select.Option>
           </Select>
         </Form.Item>
         <Card className="">
           <div className="flex justify-between">
-            <span>Ara Toplam</span>
+            <span>Subtotal</span>
             <span>{cart.total > 0 ? cart.total.toFixed(2) : 0}€</span>
           </div>
           <div className="flex justify-between my-2">

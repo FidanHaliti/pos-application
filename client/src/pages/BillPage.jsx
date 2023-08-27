@@ -1,6 +1,6 @@
 import { Button, Input, Space, Spin, Table } from "antd";
 import { useEffect, useRef, useState } from "react";
-import PrintBill from "../components/bills/PrintBill.jsx";
+import PrintBill from "../components/Bills/PrintBill.jsx";
 import Header from "../components/header/Header.jsx";
 import { SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
@@ -145,19 +145,19 @@ const BillPage = () => {
 
   const columns = [
     {
-      title: "Müşteri Adı",
+      title: "Customer Name",
       dataIndex: "customerName",
       key: "customerName",
       ...getColumnSearchProps("customerName"),
     },
     {
-      title: "Telefon Numarası",
+      title: "Phone Number",
       dataIndex: "customerPhoneNumber",
       key: "customerPhoneNumber",
       ...getColumnSearchProps("customerPhoneNumber"),
     },
     {
-      title: "Oluşturma Tarihi",
+      title: "Created At",
       dataIndex: "createdAt",
       key: "createdAt",
       render: (text) => {
@@ -165,17 +165,17 @@ const BillPage = () => {
       },
     },
     {
-      title: "Ödeme Yöntemi",
+      title: "PaymentMode",
       dataIndex: "paymentMode",
       key: "paymentMode",
       ...getColumnSearchProps("paymentMode"),
     },
     {
-      title: "Toplam Fiyat",
+      title: "Total Amount",
       dataIndex: "totalAmount",
       key: "totalAmount",
       render: (text) => {
-        return <span>{text}₺</span>;
+        return <span>{text}€</span>;
       },
       sorter: (a, b) => a.totalAmount - b.totalAmount,
     },
@@ -193,7 +193,7 @@ const BillPage = () => {
               setCustomer(record);
             }}
           >
-            Yazdır
+            Print
           </Button>
         );
       },
@@ -203,7 +203,7 @@ const BillPage = () => {
   return (
     <>
       <Header />
-      <h1 className="text-4xl font-bold text-center mb-4">Faturalar</h1>
+      <h1 className="text-4xl font-bold text-center mb-4">invoices</h1>
       {billItems ? (
         <div className="px-6">
           <Table

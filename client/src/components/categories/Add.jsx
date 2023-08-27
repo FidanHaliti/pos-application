@@ -20,7 +20,7 @@ const Add = ({
           headers: { "Content-type": "application/json; charset=UTF-8" },
         }
       );
-      message.success("Kategori başarıyla eklendi.");
+      message.success("Category added successfully.");
       form.resetFields();
       setCategories([
         ...categories,
@@ -45,7 +45,7 @@ const Add = ({
         <Form.Item
           name="title"
           label="Kategori Ekle"
-          rules={[{ required: true, message: "Kategori Alanı Boş Geçilemez!" }]}
+          rules={[{ required: true, message: "Category Field Cannot Be Empty!" }]}
         >
           <Input />
         </Form.Item>

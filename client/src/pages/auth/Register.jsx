@@ -37,12 +37,12 @@ const Register = () => {
           <h1 className="text-center text-5xl font-bold mb-2">LOGO</h1>
           <Form layout="vertical" onFinish={onFinish}>
             <Form.Item
-              label="Kullanıcı Adı"
+              label="Usename"
               name={"username"}
               rules={[
                 {
                   required: true,
-                  message: "Kullanıcı Adı Alanı Boş Bırakılamaz!",
+                  message: "Username Field Cannot Be Empty!",
                 },
               ]}
             >
@@ -54,32 +54,32 @@ const Register = () => {
               rules={[
                 {
                   required: true,
-                  message: "E-mail Alanı Boş Bırakılamaz!",
+                  message: "E-mail Field Cannot Be Empty!",
                 },
               ]}
             >
               <Input />
             </Form.Item>
             <Form.Item
-              label="Şifre"
+              label="Password"
               name={"password"}
               rules={[
                 {
                   required: true,
-                  message: "Şifre Alanı Boş Bırakılamaz!",
+                  message: "Password Field Cannot Be Empty!",
                 },
               ]}
             >
               <Input.Password />
             </Form.Item>
             <Form.Item
-              label="Şifre Tekrar"
+              label="Password-Again"
               name={"passwordAgain"}
               dependencies={["password"]}
               rules={[
                 {
                   required: true,
-                  message: "Şifre Tekrar Alanı Boş Bırakılamaz!",
+                  message: "Password Field Cannot Be Empty!",
                 },
                 ({ getFieldValue }) => ({
                   validator(_, value) {
@@ -87,7 +87,7 @@ const Register = () => {
                       return Promise.resolve();
                     }
                     return Promise.reject(
-                      new Error("Şifreler Aynı Olmak Zorunda!")
+                      new Error("Passwords Must Be The Same!")
                     );
                   },
                 }),
@@ -103,40 +103,40 @@ const Register = () => {
                 size="large"
                 loading={loading}
               >
-                Kaydol
+               Register
               </Button>
             </Form.Item>
           </Form>
           <div className="flex justify-center absolute left-0 bottom-10 w-full">
-            Bir hesabınız var mı?&nbsp;
+          Do you have an account?&nbsp;
             <Link to="/login" className="text-blue-600">
-              Şimdi giriş yap
+            Sign in now
             </Link>
           </div>
         </div>
         <div className="xl:w-4/6 lg:w-3/5 md:w-1/2 md:flex hidden bg-[#6c63ff] h-full">
           <div className="w-full h-full flex items-center">
-            <div className="w-full">
+          <div className="w-full">
               <Carousel className="!h-full px-6" autoplay>
                 <AuthCarousel
                   img="/images/responsive.svg"
                   title="Responsive"
-                  desc="Tüm Cihaz Boyutlarıyla Uyumluluk"
+                  desc="Compatibility with All Device Sizes"
                 />
                 <AuthCarousel
                   img="/images/statistic.svg"
-                  title="İstatistikler"
-                  desc="Geniş Tutulan İstatistikler"
+                  title="Statistics"
+                  desc="Widespread Statistics"
                 />
                 <AuthCarousel
                   img="/images/customer.svg"
-                  title="Müşteri Memnuniyeti"
-                  desc="Deneyim Sonunda Üründen Memnun Müşteriler"
+                  title="Customer Satisfaction"
+                  desc="Satisfied Customers at the End of Experience"
                 />
                 <AuthCarousel
                   img="/images/admin.svg"
-                  title="Yönetici Paneli"
-                  desc="Tek Yerden Yönetim"
+                  title="Admin Panel"
+                  desc="One Place Management"
                 />
               </Carousel>
             </div>
